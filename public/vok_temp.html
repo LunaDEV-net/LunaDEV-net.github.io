@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <script>
+    const formen = [
+      "Infinitiv",
+      "1.P.Sg. Indikativ Präsens Aktiv",
+      "2.P.Sg. Indikativ Präsens Aktiv",
+      "3.P.Sg. Indikativ Präsens Aktiv",
+      "1.P.Pl. Indikativ Präsens Aktiv",
+      "2.P.Pl. Indikativ Präsens Aktiv",
+      "3.P.Pl. Indikativ Präsens Aktiv",
+      "1.P.Sg. Indikativ Imperfekt Aktiv",
+      "2.P.Sg. Indikativ Imperfekt Aktiv",
+      "3.P.Sg. Indikativ Imperfekt Aktiv",
+      "1.P.Pl. Indikativ Imperfekt Aktiv",
+      "2.P.Pl. Indikativ Imperfekt Aktiv",
+      "3.P.Pl. Indikativ Imperfekt Aktiv",
+      "1.P.Sg. Futur Aktiv",
+      "2.P.Sg. Futur Aktiv",
+      "3.P.Sg. Futur Aktiv",
+      "1.P.Pl. Futur Aktiv",
+      "2.P.Pl. Futur Aktiv",
+      "3.P.Pl. Futur Aktiv",
+      "1.P.Sg. Indikativ Perfekt Aktiv",
+      "2.P.Sg. Indikativ Perfekt Aktiv",
+      "3.P.Sg. Indikativ Perfekt Aktiv",
+      "1.P.Pl. Indikativ Perfekt Aktiv",
+      "2.P.Pl. Indikativ Perfekt Aktiv",
+      "3.P.Pl. Indikativ Perfekt Aktiv",
+      "Infinitiv Perfekt",
+      "1.P.Sg. Indikativ Plusquamperfekt Aktiv",
+      "2.P.Sg. Indikativ Plusquamperfekt Aktiv",
+      "3.P.Sg. Indikativ Plusquamperfekt Aktiv",
+      "1.P.Pl. Indikativ Plusquamperfekt Aktiv",
+      "2.P.Pl. Indikativ Plusquamperfekt Aktiv",
+      "3.P.Pl. Indikativ Plusquamperfekt Aktiv",
+      "Imperativ Sg.",
+      "Imperativ Pl.",
+      "1.P.Sg. Indikativ Präsens Passiv",
+      "2.P.Sg. Indikativ Präsens Passiv",
+      "3.P.Sg. Indikativ Präsens Passiv",
+      "1.P.Pl. Indikativ Präsens Passiv",
+      "2.P.Pl. Indikativ Präsens Passiv",
+      "3.P.Pl. Indikativ Präsens Passiv",
+      "1.P.Sg. Indikativ Imperfekt Passiv",
+      "2.P.Sg. Indikativ Imperfekt Passiv",
+      "3.P.Sg. Indikativ Imperfekt Passiv",
+      "1.P.Pl. Indikativ Imperfekt Passiv",
+      "2.P.Pl. Indikativ Imperfekt Passiv",
+      "3.P.Pl. Indikativ Imperfekt Passiv",
+      "1.P.Sg. Futur Passiv",
+      "2.P.Sg. Futur Passiv",
+      "3.P.Sg. Futur Passiv",
+      "1.P.Pl. Futur Passiv",
+      "2.P.Pl. Futur Passiv",
+      "3.P.Pl. Futur Passiv",
+      "1.P.Sg. Indikativ Perfekt Passiv",
+      "2.P.Sg. Indikativ Perfekt Passiv",
+      "3.P.Sg. Indikativ Perfekt Passiv",
+      "1.P.Pl. Indikativ Perfekt Passiv",
+      "2.P.Pl. Indikativ Perfekt Passiv",
+      "3.P.Pl. Indikativ Perfekt Passiv",
+      "Infinitiv Perfekt Passiv",
+      "1.P.Sg. Indikativ Plusquamperfekt Passiv",
+      "2.P.Sg. Indikativ Plusquamperfekt Passiv",
+      "3.P.Sg. Indikativ Plusquamperfekt Passiv",
+      "1.P.Pl. Indikativ Plusquamperfekt Passiv",
+      "2.P.Pl. Indikativ Plusquamperfekt Passiv",
+      "3.P.Pl. Indikativ Plusquamperfekt Passiv",
+      "Partizip Perfekt Passiv",
+    ];
+
+    function ch() {
+      document.getElementById("output").innerHTML = formen[Math.floor(Math.random() * formen.length)];
+    }
+    window.onload = function () {
+      ch();
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Jan`s Konjugationsübungsdingsdabumsta</h1>
+  <div id="output" style="font-size: 25px;"></div>
+  <br>
+  <button onclick="ch();">Nochmal?</button>
+  <br>
+  <div style="position: relative; top: 0px; right: 0px; z-index: -1; overflow: hidden";>
+    <img style="width: 50%;" src="./vok_temp.jpeg">
+  </div>
+  <p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+  <p>Keine Garantie auf Richtigkeit&Vollständigkeit</p>
+</body>
+
+</html>
