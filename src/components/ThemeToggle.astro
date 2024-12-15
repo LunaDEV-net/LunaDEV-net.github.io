@@ -1,0 +1,80 @@
+---
+// ThemeToggle.astro
+---
+
+<button
+        class="w-10 h-10 flex items-center justify-center bg-nord-4 text-white rounded-full border-2 border-transparent transition-colors hover:bg-nord-5"
+        id="theme-toggle"
+        aria-label="Toggle Dark Mode"
+>
+    <!-- Sun icon for light mode -->
+    <svg
+            class="w-6 h-6 hidden text-nord-2"
+            id="sun-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+    >
+        <path d="M12 3v1m0 16v1M4.22 4.22l.707.707M19.07 19.07l.707.707M3 12h1m16 0h1M4.22 19.07l.707-.707M19.07 4.22l.707-.707" />
+    </svg>
+
+    <!-- Moon icon for dark mode -->
+    <svg
+            class="w-6 h-6 text-nord-6"
+            id="moon-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+    >
+        <path d="M12 3c-1.257 0-2.434.58-3.158 1.498-.597-.395-1.242-.706-1.938-.947-.696-.24-1.428-.42-2.174-.543.135-.348.298-.688.486-1.03C8.284 1.064 9.496 0 12 0c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.617 0-3.137-.426-4.457-1.161-.191-.118-.39-.243-.586-.374.136-.328.258-.662.369-.998-.479.178-.977.345-1.475.495a8.933 8.933 0 01-.725-.595C10.397 19.214 12 20 12 20c4.969 0 9-4.031 9-9s-4.031-9-9-9z" />
+    </svg>
+</button>
+
+<script type="module">
+    const themeToggleButton = document.getElementById("theme-toggle");
+    const sunIcon = document.getElementById("sun-icon");
+    const moonIcon = document.getElementById("moon-icon");
+
+    // Helper function to get theme from cookies
+    const getThemeFromCookie = () => {
+        const cookies = document.cookie.split(';');
+        const themeCookie = cookies.find(cookie => cookie.trim().startsWith('theme='));
+        return themeCookie ? themeCookie.split('=')[1] : 'light';
+    }
+
+    // Helper function to set theme in cookies
+    const setThemeInCookie = (theme) => {
+        document.cookie = `theme=${theme}; path=/; max-age=31536000`; // expires in 1 year
+    }
+
+    // Set the initial theme based on the cookie value
+    const currentTheme = getThemeFromCookie();
+    if (currentTheme === 'dark') {
+        document.documentElement.classList.add("dark");
+        sunIcon.classList.remove("hidden");
+        moonIcon.classList.add("hidden");
+    } else {
+        document.documentElement.classList.remove("dark");
+        sunIcon.classList.add("hidden");
+        moonIcon.classList.remove("hidden");
+    }
+
+    // Toggle theme on button click
+    themeToggleButton.addEventListener("click", () => {
+        const isDarkMode = document.documentElement.classList.toggle("dark");
+
+        if (isDarkMode) {
+            sunIcon.classList.remove("hidden");
+            moonIcon.classList.add("hidden");
+            setThemeInCookie("dark"); // Save dark theme in cookie
+        } else {
+            sunIcon.classList.add("hidden");
+            moonIcon.classList.remove("hidden");
+            setThemeInCookie("light"); // Save light theme in cookie
+        }
+    });
+</script>

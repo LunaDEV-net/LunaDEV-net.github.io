@@ -1,0 +1,46 @@
+---
+// Navbar.astro
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<nav class="fixed top-0 left-0 w-full z-50 bg-white dark:bg-nord-0 py-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 py-4">
+
+            <!-- Left side - Logo -->
+            <div class="flex items-center mr-25">
+                <img
+                        src="/vincentiu-solomon-ln5drpv_ImI-unsplash.jpeg"
+                        width="40"
+                        height="40"
+                        class="main-circle align-middle me-3 hover:transition-transform scale-150 "
+                        alt="Icon"
+                        style="object-fit: cover; border-radius: 50%; overflow: hidden; transition: transform .3s ease-in-out;"
+                />
+                <a href="/" class="text-2xl font-jetbrainsNLLight text-nord-0 dark:text-nord-5 transition-colors font-JetBrainsMono-ExtraBold">
+                    LunaDEV
+                </a>
+            </div>
+
+            <!-- Right side - Navigation Links and Theme Toggle -->
+            <div class="flex items-center space-x-6">
+                <!-- Navigation Links -->
+                <a href="/" class="text-green-600 hover:text-green-50 dark:hover:text-nord-2 transition-colors">
+                    /home
+                </a>
+                <a href="/about" class="text-nord-0 dark:text-nord-4 hover:text-nord-5 dark:hover:text-nord-2 transition-colors">
+                    About
+                </a>
+                <a href="/services" class="text-nord-0 dark:text-nord-4 hover:text-nord-5 dark:hover:text-nord-2 transition-colors">
+                    Services
+                </a>
+                <a href="/contact" class="text-nord-0 dark:text-nord-4 hover:text-nord-5 dark:hover:text-nord-2 transition-colors">
+                    Contact
+                </a>
+            </div>
+
+            <!-- Theme Toggle Button -->
+            <ThemeToggle />
+        </div>
+    </div>
+</nav>

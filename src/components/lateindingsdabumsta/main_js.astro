@@ -1,0 +1,267 @@
+---
+
+---
+<script type="text/javascript">
+    const all_tempi = ["Präsens","PPA","Imperfekt"]
+    const all_modi = ["Indikativ"]
+    const all_geni = ["Aktiv"]
+    const all_personen = ["1. P. Sg.","2. P. Sg.","3. P. Sg.","1. P. Pl.","2. P. Pl.","3. P. Pl."]
+    const default_vaules = ["PPA","Präsens","Imperfekt","Indikativ","Aktiv"]
+    const verben_dekliniert = ["PPA","PPP"]
+    const all_numeri = ["Sg.","Pl."]
+    const all_kasi = ["Nom.","Gen.","Dat.","Akk.","Abl."]
+
+
+    function choose_random_element_from_list(list) {
+        return list[Math.floor(Math.random() * list.length)]
+    }
+
+    function collected_data() {
+        const selectedData = {};  // Object to store selected data
+
+        // Loop through each cell with the 'selected' class in the settings table
+        const markedCells = document.querySelectorAll('#settings .selected');
+
+        markedCells.forEach(cell => {
+            const selectedArt = cell.dataset.selected_art;  // Get the data-selected_art attribute
+            const value = cell.dataset.str;  // Get the data-str attribute
+
+            // If this 'selected_art' is not yet in selectedData, initialize an array
+            if (!selectedData[selectedArt]) {
+                selectedData[selectedArt] = [];
+            }
+
+            // Push the value into the corresponding array in selectedData
+            selectedData[selectedArt].push(value);
+        });
+        return selectedData;  // Return the collected data
+    }
+
+    function generate_verb() {
+        let selected_data = collected_data();
+        // Generate the random values
+        let selected_tempi = choose_random_element_from_list(selected_data["Verb - Tempus"]);
+
+        if (verben_dekliniert.includes(selected_tempi)) {
+            let selected_numerus = choose_random_element_from_list(all_numeri);
+            let selected_kasus = choose_random_element_from_list(all_kasi);
+            //let selected_numerus = "Sg."
+            //let selected_kasus = "Nom."
+            document.getElementById("Output_form").innerHTML = `${selected_kasus} ${selected_numerus} ${selected_tempi}`;
+
+            // Set Table to Output_table
+            let query = `template[data-art="verb"][data-tempus="${selected_tempi}"]`;
+            let selected_template = document.querySelector(query);
+
+            if (!selected_template) {
+                document.getElementById("Output_table").innerHTML = "No matching template found.";
+                return;
+            }
+
+            // Set the innerHTML of the selected template to the Output element
+            document.getElementById("Output_table").innerHTML = selected_template.innerHTML;
+
+            // Find the correct row for the selected Numerus and Kasus
+            let rows = document.querySelectorAll("#Output_table table tbody tr");
+            rows.forEach(row => {
+                // Get the Numerus (rowspan) cell and Kasus (case) cell
+                let CellNumerus = row.dataset.numerus;
+                let KasusCell = row.querySelector('th:not([data-ignore_marking])')
+                let CellKasus = KasusCell.innerText.trim();
+
+                let Kasus_is_equl = function (){ if (
+                    KasusCell.dataset.alternitivekasus
+                ) {
+                    return (CellKasus === selected_kasus || KasusCell.dataset.alternitivekasus.trim() === selected_kasus);
+                } else {
+                    return (CellKasus === selected_kasus);
+                }};
+
+                if (CellNumerus === selected_numerus && Kasus_is_equl()) {
+                    row.classList.add('selected');
+                }
+            });
+            document.querySelector(`#Output_table table tbody th[rowspan="5"][data-numerus="${selected_numerus}"]`).classList.add('selected');
+        } else {
+            let selected_modus = choose_random_element_from_list(selected_data["Verb - Modi"]);
+            let selected_genus = choose_random_element_from_list(selected_data["Verb - Geni"]);
+            let selected_person = choose_random_element_from_list(all_personen);
+
+            // set Output_form
+            document.getElementById("Output_form").innerHTML = `${selected_person} ${selected_tempi} ${selected_modus} ${selected_genus}`;
+
+            // Set Table to Output_table
+            let query = `template[data-art="verb"][data-tempus="${selected_tempi}"][data-modus=${selected_modus}][data-genus=${selected_genus.toString()}]`;
+            let selected_template = document.querySelector(query);
+
+            if (!selected_template) {
+                document.getElementById("Output_table").innerHTML = "No matching template found.";
+                return;
+            }
+
+            // Set the innerHTML of the selected template to the Output element
+            document.getElementById("Output_table").innerHTML = selected_template.innerHTML;
+
+            // Find the <tr> element corresponding to the selected person
+            let rows = document.querySelectorAll("#Output_table table tbody tr");
+            rows.forEach(row => {
+                // Get the content of the <th> (person) in this row
+                let rowText = row.querySelector('th').textContent.trim(); // trim removes extra spaces
+                if (rowText === `${selected_person}`) {
+                    row.classList.add('selected');  // Mark the selected row
+                } else {
+                    row.classList.remove('selected'); // Remove 'selected' class from other rows
+                }
+            });
+        }
+    }
+
+
+    function settings_table_click(cell) {
+        // Toggle der Klasse "selected" und speicher den Status
+        if (cell.classList.contains("selected")) {
+            cell.classList.remove("selected");
+        } else {
+            cell.classList.add("selected");
+        }
+    }
+
+    function generate_table_using_colloms(dict, parent) {
+        let keys = Object.keys(dict); // Get the keys of the dictionary, these will be the column headers
+
+        // Create table elements (thead, tbody)
+        let thead = parent.appendChild(document.createElement('thead'));
+        let tbody = parent.appendChild(document.createElement('tbody'));
+
+        // Create header row (thead tr)
+        let thead_tr = thead.appendChild(document.createElement('tr'));
+
+        // Create table headers from the dictionary keys
+        keys.forEach(key => {
+            let th = document.createElement('th');
+            th.innerHTML = key; // Set the header text
+            thead_tr.appendChild(th);
+        });
+
+        // Determine the number of rows based on the longest array in the dictionary
+        let maxRows = Math.max(...Object.values(dict).map(arr => arr.length));
+
+        // Generate rows for the table
+        for (let i = 0; i < maxRows; i++) {
+            let tr = document.createElement('tr');
+
+            keys.forEach(key => {
+                let td = document.createElement('td');
+                let value = dict[key][i] !== undefined ? dict[key][i] : ''; // Handle missing values by leaving cell empty
+                td.innerHTML = value; // Set the table cell text
+                if (default_vaules.includes(value)) {td.classList.add('selected');}
+                td.dataset.selected_art = key.toString();
+                td.dataset.str = value.toString();
+                td.onclick = (hi) => {settings_table_click(hi.target);}
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr); // Append the row to tbody
+        }
+    }
+
+
+    function generate_settings() {
+        // Get the settings table body
+        let settings_table = document.getElementById("settings");
+
+        // Check if the tbody exists
+        if (!settings_table) {
+            console.error("No tbody element found in settings table.");
+            return;
+        }
+
+        let dict = {
+            "Verb - Tempus": all_tempi,
+            "Verb - Modi": all_modi,
+            "Verb - Geni": all_geni,
+        }
+
+        generate_table_using_colloms(dict, settings_table);
+    }
+
+    function colorTableText() {
+        // Select all <tr> elements that have the class 'red_after_minus'
+        const rowsWithRedAfterMinus = document.querySelectorAll('tr.red_after_minus');
+
+        rowsWithRedAfterMinus.forEach(row => {
+            // Select all <td> elements in this row
+            const tdElements = row.querySelectorAll('td');
+
+            tdElements.forEach(td => {
+                // Get the innerHTML of each <td> element (to preserve <br> tags)
+                let content = td.innerHTML.trim();
+
+                // Initialize a new string to build the modified HTML content
+                let newContent = '';
+
+                // Split the content by <br> tags to handle line breaks
+                let parts = content.split('<br>');
+
+                parts.forEach((part, index) => {
+                    // For the first part (before any <br>), handle hyphen logic
+                    if (index === 0) {
+                        let elements = part.split('-');
+                        let newText = '';
+
+                        elements.forEach((subPart, subIndex) => {
+                            // Ensure all brackets are wrapped in <span class="black-text"> to stay black
+                            subPart = subPart.replace(/[\[\]\{\}\(\)]/g, match => `<span class="black-text">${match}</span>`);
+
+                            if (subIndex === 0) {
+                                // The first part before the hyphen remains normal (black)
+                                newText += `<span>${subPart}</span>`;
+                            } else {
+                                // After the first hyphen, the text should be red
+                                newText += `<span>-</span><span class="red-text">${subPart}</span>`;
+                            }
+                        });
+
+                        // Add this part to the new content
+                        newContent += newText;
+                    } else {
+                        // For parts after <br>, reset the color to normal unless there's a hyphen after the <br>
+                        let elements = part.split('-');
+                        let newText = '';
+
+                        if (elements[0] !== '') {
+                            // No hyphen at the start, treat the part as normal (black)
+                            newText += `<span>${elements[0]}</span>`;
+                        }
+
+                        // Check for brackets in the part and ensure they remain black
+                        elements.slice(1).forEach((subPart) => {
+                            subPart = subPart.replace(/[\[\]\{\}\(\)]/g, match => `<span class="black-text">${match}</span>`);
+
+                            // If there's a hyphen at the start of the remaining part, it should be red
+                            newText += `<span>-</span><span class="red-text">${subPart}</span>`;
+                        });
+
+                        // Add the <br> followed by the modified part to the new content
+                        newContent += `<br>${newText}`;
+                    }
+                });
+
+                // Set the modified content back to the <td>
+                td.innerHTML = newContent;
+            });
+        });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", _ => {
+        document.getElementById("verb_button").onclick = () => {
+            generate_verb();
+            colorTableText()
+        };
+
+        setTimeout(generate_verb, 100)
+        setTimeout(generate_settings, 50)
+    });
+
+</script>

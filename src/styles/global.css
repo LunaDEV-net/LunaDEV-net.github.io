@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Default Light Theme Styles */
+    body {
+        background-color: #eceff4; /* snow storm */
+        color: #2e3440; /* polar night */
+    }
+
+    /* Dark Theme Styles */
+    .dark body {
+        background-color: #2e3440; /* polar night */
+        color: #e5e9f0; /* snow storm */
+    }
+}

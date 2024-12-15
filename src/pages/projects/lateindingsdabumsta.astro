@@ -1,0 +1,44 @@
+---
+import TablesTemplates from "../../components/lateindingsdabumsta/tables_templates.astro"
+import MainJs from "../../components/lateindingsdabumsta/main_js.astro"
+---
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempus, Modus, Genus Verbi</title>
+    <style>
+        #settings .selected {
+            background-color: cadetblue !important;
+        }
+        td {background-color: red;}
+    </style>
+    <style>
+        .marked {
+            background-color: #ff4f4f !important;
+        }
+        .red-text {
+            font-weight: bold;
+        }
+        #Output_table th, #Output_table td {
+            border: 1px solid black;
+        }
+        .black-text {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<div class="relative overflow-auto p-8">
+    <div class="flex flex-row space-x-4 font-mono text-white text-sm font-bold leading-6 justify-around">
+    <button id="substantive_button" class="bg-dark dark:bg-dark-2 border-dark dark:border-dark-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-0 hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5">Substanive</button>
+    <button id="verb_button" class="bg-dark dark:bg-dark-2 border-dark dark:border-dark-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-0 hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5">Verben</button>
+    </div>
+</div>
+<p id="Output_form"></p>
+<div id="Output_table"></div>
+<br>
+<table id="settings"></table>
+
+<TablesTemplates />
+</body>
+<MainJs />
