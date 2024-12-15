@@ -180,12 +180,10 @@
             "Verb - Tempus": all_tempi,
             "Verb - Modi": all_modi,
             "Verb - Geni": all_geni,
-            "": [""],
-            "Substantiv - Numerus": all_numeri,
-            "Substantiv - Kasus": all_kasi
         }
 
         generate_table_using_colloms(dict, settings_table);
+
     }
 
     function colorTableText() {
@@ -273,6 +271,27 @@
 
         document.getElementById("Output_table").innerHTML = selected_template.innerHTML;
 
+        // Find the correct row for the selected Numerus and Kasus
+        let rows = document.querySelectorAll("#Output_table table tbody tr");
+        rows.forEach(row => {
+            // Get the Numerus (rowspan) cell and Kasus (case) cell
+            let CellNumerus = row.dataset.numerus;
+            let KasusCell = row.querySelector('th:not([data-ignore_marking])')
+            let CellKasus = KasusCell.innerText.trim();
+
+            let Kasus_is_equl = function (){ if (
+                KasusCell.dataset.alternitivekasus
+            ) {
+                return (CellKasus === selected_kasus || KasusCell.dataset.alternitivekasus.trim() === selected_kasus);
+            } else {
+                return (CellKasus === selected_kasus);
+            }};
+
+            if (CellNumerus === selected_numerus && Kasus_is_equl()) {
+                row.classList.add('selected');
+            }
+        });
+        document.querySelector(`#Output_table table tbody th[rowspan][data-numerus="${selected_numerus}"]`).classList.add('selected');
 
 
     }
