@@ -180,6 +180,9 @@
             "Verb - Tempus": all_tempi,
             "Verb - Modi": all_modi,
             "Verb - Geni": all_geni,
+            "": [""],
+            "Substantiv - Numerus": all_numeri,
+            "Substantiv - Kasus": all_kasi
         }
 
         generate_table_using_colloms(dict, settings_table);
@@ -253,11 +256,37 @@
         });
     }
 
+    function gen_sub() {
+        let selected_numerus = choose_random_element_from_list(all_numeri);
+        let selected_kasus = choose_random_element_from_list(all_kasi);
+
+
+        document.getElementById("Output_form").innerHTML = `${selected_kasus} ${selected_numerus}`;
+
+        let query = `template[data-art="substantiv"]`;
+        let selected_template = document.querySelector(query);
+
+        if (!selected_template) {
+            document.getElementById("Output_table").innerHTML = "No matching template found.";
+            return;
+        }
+
+        document.getElementById("Output_table").innerHTML = selected_template.innerHTML;
+
+
+
+    }
+
 
     document.addEventListener("DOMContentLoaded", _ => {
         document.getElementById("verb_button").onclick = () => {
             generate_verb();
-            colorTableText()
+            colorTableText();
+        };
+
+        document.getElementById("substantive_button").onclick = () => {
+            gen_sub();
+            colorTableText();
         };
 
         setTimeout(generate_verb, 100)

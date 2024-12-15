@@ -6,18 +6,13 @@ import MainJs from "../../components/lateindingsdabumsta/main_js.astro"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tempus, Modus, Genus Verbi</title>
-    <style>
-        #settings .selected {
-            background-color: cadetblue !important;
-        }
-        td {background-color: red;}
-    </style>
-    <style>
-        .marked {
-            background-color: #ff4f4f !important;
+    <style is:global>
+        .selected {
+            background-color: blue !important;
         }
         .red-text {
             font-weight: bold;
+            color: red;
         }
         #Output_table th, #Output_table td {
             border: 1px solid black;
