@@ -3,35 +3,15 @@
 ---
 
 <button
-        class="w-10 h-10 flex items-center justify-center bg-nord-4 text-white rounded-full border-2 border-transparent transition-colors hover:bg-nord-5"
+        class="w-10 h-10 flex items-center justify-center bg-nord-1 text-white dark:bg-nord-4 dark:text-nord-0 rounded-full border-2 border-transparent transition-colors "
         id="theme-toggle"
         aria-label="Toggle Dark Mode"
 >
     <!-- Sun icon for light mode -->
-    <svg
-            class="w-6 h-6 hidden text-nord-2"
-            id="sun-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-    >
-        <path d="M12 3v1m0 16v1M4.22 4.22l.707.707M19.07 19.07l.707.707M3 12h1m16 0h1M4.22 19.07l.707-.707M19.07 4.22l.707-.707" />
-    </svg>
+    <i class="nf nf-oct-sun" id="sun-icon"></i>
 
     <!-- Moon icon for dark mode -->
-    <svg
-            class="w-6 h-6 text-nord-6"
-            id="moon-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-    >
-        <path d="M12 3c-1.257 0-2.434.58-3.158 1.498-.597-.395-1.242-.706-1.938-.947-.696-.24-1.428-.42-2.174-.543.135-.348.298-.688.486-1.03C8.284 1.064 9.496 0 12 0c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.617 0-3.137-.426-4.457-1.161-.191-.118-.39-.243-.586-.374.136-.328.258-.662.369-.998-.479.178-.977.345-1.475.495a8.933 8.933 0 01-.725-.595C10.397 19.214 12 20 12 20c4.969 0 9-4.031 9-9s-4.031-9-9-9z" />
-    </svg>
+    <i id="moon-icon" class="nf nf-oct-moon"></i>
 </button>
 
 <script type="module">
