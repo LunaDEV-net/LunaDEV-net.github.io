@@ -40,7 +40,7 @@
     function generate_verb() {
         let selected_data = collected_data();
         // Generate the random values
-        let selected_tempi = choose_random_element_from_list(selected_data["Verb - Tempus"]);
+        let selected_tempi = choose_random_element_from_list(selected_data["Tempus"]);
 
         if (verben_dekliniert.includes(selected_tempi)) {
             let selected_numerus = choose_random_element_from_list(all_numeri);
@@ -83,8 +83,8 @@
             });
             document.querySelector(`#Output_table table tbody th[rowspan="5"][data-numerus="${selected_numerus}"]`).classList.add('selected');
         } else {
-            let selected_modus = choose_random_element_from_list(selected_data["Verb - Modi"]);
-            let selected_genus = choose_random_element_from_list(selected_data["Verb - Geni"]);
+            let selected_modus = choose_random_element_from_list(selected_data["Modi"]);
+            let selected_genus = choose_random_element_from_list(selected_data["Geni"]);
             let selected_person = choose_random_element_from_list(all_personen);
 
             // set Output_form
@@ -177,9 +177,9 @@
         }
 
         let dict = {
-            "Verb - Tempus": all_tempi,
-            "Verb - Modi": all_modi,
-            "Verb - Geni": all_geni,
+            "Tempus": all_tempi,
+            "Modi": all_modi,
+            "Geni": all_geni,
         }
 
         generate_table_using_colloms(dict, settings_table);
