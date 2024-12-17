@@ -22,6 +22,7 @@ import MainJs from "../../components/lateindingsdabumsta/main_js.astro"
         }
     </style>
 </head>
+<!--
 <body>
 <div class="relative overflow-auto p-8">
     <div class="flex flex-row space-x-4 font-mono text-white text-sm font-bold leading-6 justify-around">
@@ -29,11 +30,46 @@ import MainJs from "../../components/lateindingsdabumsta/main_js.astro"
     <button id="verb_button" class="bg-dark dark:bg-dark-2 border-dark dark:border-dark-2 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-0 hover:bg-body-color hover:border-body-color disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5">Verben</button>
     </div>
 </div>
-<p id="Output_form"></p>
-<div id="Output_table"></div>
+<p id="Output_form" class=""></p>
+<div id="Output_table" class=""></div>
 <br>
 <table id="settings"></table>
+-->
+<body class="bg-nord-6 text-nord-0 dark:bg-nord-0 dark:text-nord-6">
+<div class="relative overflow-auto p-8">
+    <!-- Buttons Section -->
+    <div
+            class="flex flex-row flex-wrap justify-around space-x-4 font-mono text-sm font-bold leading-6 text-nord-0 dark:text-nord-6"
+    >
+        <button
+                id="substantive_button"
+                class="bg-nord-3 hover:bg-nord-4 dark:bg-nord-1 dark:hover:bg-nord-2 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-0 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4"
+        >
+            Substanive
+        </button>
+        <button
+                id="verb_button"
+                class="bg-nord-3 hover:bg-nord-4 dark:bg-nord-1 dark:hover:bg-nord-2 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-0 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4"
+        >
+            Verben
+        </button>
+    </div>
+</div>
+
+<!-- Output Section -->
+<div class="flex flex-col items-center justify-center mt-4">
+    <p id="Output_form" class="text-base text-nord-0 dark:text-nord-6"></p>
+    <div id="Output_table" class="mt-2"></div>
+</div>
+
+<!-- Settings Table -->
+<br />
+<table
+        id="settings"
+        class="w-full max-w-4xl mx-auto border-collapse border border-nord-4 dark:border-nord-3"
+></table>
+</body>
 
 <TablesTemplates />
-</body>
+<!--</body>-->
 <MainJs />
