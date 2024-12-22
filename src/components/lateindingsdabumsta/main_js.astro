@@ -154,16 +154,25 @@
                 let td = document.createElement('td');
                 let value = dict[key][i] !== undefined ? dict[key][i] : ''; // Handle missing values by leaving cell empty
                 td.innerHTML = value; // Set the table cell text
-                if (default_vaules.includes(value)) {td.classList.add('selected');}
+
+                if (value === '') {
+                    td.classList.add('hidden-cell'); // Add class to hide empty cells
+                }
+
+                if (default_vaules.includes(value)) {
+                    td.classList.add('selected');
+                }
+
                 td.dataset.selected_art = key.toString();
                 td.dataset.str = value.toString();
-                td.onclick = (hi) => {settings_table_click(hi.target);}
+                td.onclick = (hi) => { settings_table_click(hi.target); };
                 tr.appendChild(td);
             });
 
             tbody.appendChild(tr); // Append the row to tbody
         }
     }
+
 
 
     function generate_settings() {

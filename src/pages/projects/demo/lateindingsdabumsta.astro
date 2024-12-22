@@ -1,0 +1,69 @@
+---
+import TablesTemplates from "../../../components/lateindingsdabumsta/tables_templates.astro"
+import MainJs from "../../../components/lateindingsdabumsta/main_js.astro"
+import Navbar from "../../../components/Navbar.astro";
+---
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempus, Modus, Genus Verbi</title>
+    <link rel="stylesheet" href="/main.css">
+
+    <style is:global>
+        #Output_table table {
+            width: 100%;
+        }
+        .hidden-cell {
+            display: none; /* Hides the cell completely */
+            /* Alternatively, you can use visibility: hidden; */
+        }
+        caption {
+            font-size: 1.25em;
+            font-weight: bold;
+            color: white;
+        }
+        .selected {
+            background-color: #d08770 !important;
+        }
+        .red-text {
+            font-weight: bold;
+            color: red;
+        }
+        #Output_table th, #Output_table td, #settings th, #settings td {
+            border: 1px solid black;
+        }
+        .black-text {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body class="bg-nord-6 text-nord-0 dark:bg-nord-0 dark:text-nord-6">
+<Navbar />
+<div class="relative overflow-auto p-8">
+    <!-- Buttons Section -->
+    <div class="flex flex-row flex-wrap justify-around space-x-4 font-mono text-sm font-bold leading-6 text-nord-0 dark:text-nord-6">
+        <button id="substantive_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
+            Substanive
+        </button>
+        <button id="verb_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
+            Verben
+        </button>
+    </div>
+</div>
+
+<!-- Output Section -->
+<div class="flex flex-col items-center justify-center mt-4 text-nord-6 dark:text-nord-4">
+    <p id="Output_form" class="text-base bg-nord-3 rounded-md p-3"></p>
+    <br>
+    <div id="Output_table" class="mt-2 bg-nord-3 rounded-md p-3 pt-1.5" style="min-width: 80%;"></div>
+</div>
+
+<!-- Settings Table -->
+<br />
+<div class="flex flex-col items-center justify-center mt-4 text-nord-6 dark:text-nord-4">
+<table id="settings" class="mt-2 bg-nord-3 rounded-md p-3 pt-1.5 w-4/5"><caption>Verb</caption></table>
+</div>
+</body>
+
+<TablesTemplates />
+<MainJs />
