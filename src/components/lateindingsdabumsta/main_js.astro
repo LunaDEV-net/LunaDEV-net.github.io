@@ -2,11 +2,11 @@
 
 ---
 <script type="text/javascript">
-    const all_tempi = ["Präsens","PPA","Imperfekt"]
+    const all_tempi = ["Präsens","PPA","Imperfekt","Futur"]
     const all_modi = ["Indikativ"]
     const all_geni = ["Aktiv"]
     const all_personen = ["1. P. Sg.","2. P. Sg.","3. P. Sg.","1. P. Pl.","2. P. Pl.","3. P. Pl."]
-    const default_vaules = ["PPA","Indikativ","Aktiv"]
+    const default_vaules = ["Futur","Indikativ","Aktiv"]
     const verben_dekliniert = ["PPA","PPP"]
     const all_numeri = ["Sg.","Pl."]
     const all_kasi = ["Nom.","Gen.","Dat.","Akk.","Abl."]
@@ -114,6 +114,7 @@
                 }
             });
         }
+        colorTableText();
     }
 
 
@@ -303,18 +304,17 @@
         document.querySelector(`#Output_table table tbody th[rowspan][data-numerus="${selected_numerus}"]`).classList.add('selected');
 
 
+        colorTableText();
     }
 
 
     document.addEventListener("DOMContentLoaded", _ => {
         document.getElementById("verb_button").onclick = () => {
             generate_verb();
-            colorTableText();
         };
 
         document.getElementById("substantive_button").onclick = () => {
             gen_sub();
-            colorTableText();
         };
 
         setTimeout(generate_verb, 100)
