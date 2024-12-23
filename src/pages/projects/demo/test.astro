@@ -30,12 +30,15 @@ import Navbar from "../../../components/Navbar.astro";
         }
     </style>
 </head>
-<body>
+<body class="text-nord-0 dark:text-white bg-white dark:bg-nord-0">
+<div class="overflow-x-auto">
+<Navbar />
+</div>
 <div class="relative overflow-auto p-8">
     <!-- Buttons Section -->
     <div class="flex flex-row flex-wrap justify-around space-x-4 font-mono text-sm font-bold leading-6 text-nord-0 dark:text-nord-6">
         <button id="substantive_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
-            Substanive
+            Substaniv
         </button>
         <button id="verb_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
             Verben
@@ -44,16 +47,17 @@ import Navbar from "../../../components/Navbar.astro";
 </div>
 
 <!-- Output Section -->
-<div>
-    <p id="Output_form"></p>
-    <br>
-    <div id="Output_table" class="overflow-x-scroll"></div>
+<div class="flex flex-col items-center justify-center mt-4">
+    <p id="Output_form" class="text-center mx-auto"></p>
 </div>
+<br>
+<div id="Output_table" class="overflow-x-scroll"></div>
+
 
 <!-- Settings Table -->
 <br />
-<div>
-    <table id="settings"><caption>Verb</caption></table>
+<div class="flex flex-col items-center justify-center pt-4 ">
+    <table id="settings" class="mt-2 bg-white dark:bg-nord-1 rounded-md p-3 pt-1.5 w-4/5"><caption class="">Verb</caption></table>
 </div>
 </body>
 
