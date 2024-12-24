@@ -2,11 +2,11 @@
 
 ---
 <script type="text/javascript">
-    const all_tempi = ["Futur","Präsens","Imperfekt","Perfekt","Plqupf.","PPA"]
+    const all_tempi = ["Futur","Präsens","Imperfekt","Perfekt","Plqupf.","PPA","Imperativ"]
     const all_modi = ["Indikativ","Konjunktiv"]
     const all_geni = ["Aktiv","Passiv"]
     const all_personen = ["1. P. Sg.","2. P. Sg.","3. P. Sg.","1. P. Pl.","2. P. Pl.","3. P. Pl."]
-    const default_vaules = ["Plqupf.","Konjunktiv","Passiv"]
+    const default_vaules = ["Futur","Präsens","Imperfekt","Perfekt","Plqupf.","PPA","Imperativ","Indikativ","Aktiv","Passiv"]
     const verben_dekliniert = ["PPA","PPP"]
     const all_numeri = ["Sg.","Pl."]
     const all_kasi = ["Nom.","Gen.","Dat.","Akk.","Abl."]
@@ -82,6 +82,26 @@
                 }
             });
             document.querySelector(`#Output_table table tbody th[rowspan="5"][data-numerus="${selected_numerus}"]`).classList.add('selected');
+        } else if (selected_tempi==="Imperativ") {
+            let selected_numerus = choose_random_element_from_list(all_numeri);
+            document.getElementById("Output_form").innerHTML = `${selected_numerus} ${selected_tempi}`;
+
+            // Set Table to Output_table
+            let query = `template[data-art="verb"][data-tempus="${selected_tempi}"]`;
+            let selected_template = document.querySelector(query);
+
+            if (!selected_template) {
+                document.getElementById("Output_table").innerHTML = "No matching template found.";
+                return;
+            }
+
+            // Set the innerHTML of the selected template to the Output element
+            document.getElementById("Output_table").innerHTML = selected_template.innerHTML;
+
+            document.querySelector(`#Output_table table tbody th[data-numerus="${selected_numerus}"]`).classList.add('selected');
+            document.querySelectorAll(`#Output_table table tbody tr[data-numerus="${selected_numerus}"] td `).forEach(cell => {
+                cell.classList.add('selected');
+            });
         } else {
             let selected_modus = choose_random_element_from_list(selected_data["Modi"]);
             let selected_genus = choose_random_element_from_list(selected_data["Geni"]);
