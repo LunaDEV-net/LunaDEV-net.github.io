@@ -12,8 +12,8 @@ import Navbar from "../../../components/Navbar.astro";
 
     <style is:global>
         .hidden-cell {
-            display: none; /* Hides the cell completely */
-            /* Alternatively, you can use visibility: hidden; */
+            visibility: hidden !important;
+            border-width: 0 !important; /* Removes the border */
         }
         .selected {
             background-color: #d08770 !important;
