@@ -39,6 +39,11 @@
 
     function generate_verb() {
         let selected_data = collected_data();
+        if (!(Object.keys(selected_data).length===3)){
+            document.getElementById("Output_form").innerHTML = "<b class='red-text'>Bitte mds. 1 aus Jeder Kategorie auswählen</b>";
+            document.getElementById("Output_table").innerHTML = "";
+            return;
+        }
         // Generate the random values
         let selected_tempi = choose_random_element_from_list(selected_data["Tempus"]);
 
@@ -104,6 +109,10 @@
             });
         } else {
             let selected_modus = choose_random_element_from_list(selected_data["Modi"]);
+
+            if (selected_tempi==="Futur") {
+                selected_modus = "Indikativ";
+            }
             let selected_genus = choose_random_element_from_list(selected_data["Geni"]);
             let selected_person = choose_random_element_from_list(all_personen);
 
