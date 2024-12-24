@@ -5,21 +5,22 @@ import Navbar from "../../../components/Navbar.astro";
 ---
 <head>
     <meta charset="UTF-8">
-    <title>Tempus, Modus, Genus Verbi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Tempus, Modus, Genus Verbi</title>
     <link rel="stylesheet" href="/main.css">
 
     <style is:global>
-        @media (min-aspect-ratio: 1/1) {
-            td {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
+        #Output_table table {
+            width: 100%;
         }
         .hidden-cell {
-            visibility: hidden !important;
-            border-width: 0 !important; /* Removes the border */
+            display: none;
+            visibility: hidden;
+        }
+        caption {
+            font-size: 1.25em;
+            font-weight: bold;
+            color: white;
         }
         .selected {
             background-color: #d08770 !important;
@@ -36,15 +37,13 @@ import Navbar from "../../../components/Navbar.astro";
         }
     </style>
 </head>
-<body class="text-nord-0 dark:text-white bg-white dark:bg-nord-0">
-<div class="overflow-x-auto">
+<body class="bg-nord-6 text-nord-0 dark:bg-nord-0 dark:text-nord-6 overflow-scroll">
 <Navbar />
-</div>
 <div class="relative overflow-auto p-8">
     <!-- Buttons Section -->
     <div class="flex flex-row flex-wrap justify-around space-x-4 font-mono text-sm font-bold leading-6 text-nord-0 dark:text-nord-6">
         <button id="substantive_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
-            Substaniv
+            Substanive
         </button>
         <button id="verb_button" class="bg-nord-3 hover:bg-nord-2 dark:bg-nord-1 dark:hover:bg-nord-0 border-nord-4 dark:border-nord-3 border rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-nord-6 dark:text-nord-4 disabled:bg-nord-2 disabled:border-nord-2 disabled:text-nord-3 dark:disabled:bg-nord-3 dark:disabled:border-nord-3 dark:disabled:text-nord-4">
             Verben
@@ -53,19 +52,16 @@ import Navbar from "../../../components/Navbar.astro";
 </div>
 
 <!-- Output Section -->
-<div class="flex flex-col items-center justify-center mt-4">
-    <p id="Output_form" class="text-center mx-auto"></p>
+<div class="flex flex-col items-center justify-center mt-4 text-nord-6 dark:text-nord-4">
+    <p id="Output_form" class="text-base bg-nord-3 rounded-md p-3"></p>
+    <br>
+    <div id="Output_table" class="mt-2 bg-nord-3 rounded-md p-3 pt-1.5"></div>
 </div>
-<br>
-<div class="flex overflow-x-auto"><div class="m-auto">
-    <div id="Output_table" class="overflow-x-auto mt-2 bg-nord-1 rounded-md p-3 pt-1.5 w-auto"></div>
-</div></div>
-
 
 <!-- Settings Table -->
 <br />
-<div class="flex flex-col items-center justify-center pt-4 ">
-    <table id="settings" class="mt-2 bg-white dark:bg-nord-1 rounded-md p-3 pt-1.5 w-4/5"><caption class="">Verb</caption></table>
+<div class="flex flex-col items-center justify-center mt-4 text-nord-6 dark:text-nord-4">
+<table id="settings" class="mt-2 bg-nord-3 rounded-md p-3 pt-1.5 w-4/5"><caption>Verb</caption></table>
 </div>
 </body>
 
