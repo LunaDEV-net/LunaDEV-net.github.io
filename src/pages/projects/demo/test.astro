@@ -11,6 +11,10 @@ import Navbar from "../../../components/Navbar.astro";
     <link rel="stylesheet" href="/main.css">
 
     <style is:global>
+        td {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
         .hidden-cell {
             visibility: hidden !important;
             border-width: 0 !important; /* Removes the border */
@@ -51,7 +55,9 @@ import Navbar from "../../../components/Navbar.astro";
     <p id="Output_form" class="text-center mx-auto"></p>
 </div>
 <br>
-<div id="Output_table" class="overflow-x-auto"></div>
+<div class="flex overflow-x-auto"><div class="m-auto">
+    <div id="Output_table" class="overflow-x-auto mt-2 bg-nord-1 rounded-md p-3 pt-1.5 w-auto"></div>
+</div></div>
 
 
 <!-- Settings Table -->
