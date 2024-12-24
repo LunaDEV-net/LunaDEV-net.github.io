@@ -11,6 +11,18 @@ import Navbar from "../../../components/Navbar.astro";
     <link rel="stylesheet" href="/main.css">
 
     <style is:global>
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .vignette-img {
+            width: 25%;
+            border-radius: 10px;
+            box-shadow: inset 0 0 50px 30px rgba(0, 0, 0, 0.5);
+        }
         @media (min-aspect-ratio: 1/1) {
             td {
                 padding-left: 0.5rem;
@@ -44,6 +56,7 @@ import Navbar from "../../../components/Navbar.astro";
 <div class="overflow-x-auto">
 <Navbar />
 </div>
+
 <div class="relative overflow-auto p-8">
     <!-- Buttons Section -->
     <div class="flex flex-row flex-wrap justify-around space-x-4 font-mono text-sm font-bold leading-6 text-nord-0 dark:text-nord-6">
@@ -64,7 +77,9 @@ import Navbar from "../../../components/Navbar.astro";
 <div class="flex overflow-x-auto"><div class="m-auto">
     <div id="Output_table" class="overflow-x-auto mt-2 dark:bg-nord-1 rounded-md p-3 pt-1.5 w-auto"></div>
 </div></div>
-
+<div class="image-container">
+    <img src="/vok_temp.jpeg" class="vignette-img">
+</div>
 
 <!-- Settings Table -->
 <br />
