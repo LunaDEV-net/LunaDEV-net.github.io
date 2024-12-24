@@ -17,6 +17,10 @@ import Navbar from "../../../components/Navbar.astro";
                 padding-right: 0.5rem;
             }
         }
+        caption {
+            font-size: 1.25em;
+            font-weight: bold;
+        }
         .hidden-cell {
             visibility: hidden !important;
             border-width: 0 !important; /* Removes the border */
@@ -54,18 +58,18 @@ import Navbar from "../../../components/Navbar.astro";
 
 <!-- Output Section -->
 <div class="flex flex-col items-center justify-center mt-4">
-    <p id="Output_form" class="text-center mx-auto"></p>
+    <p id="Output_form" class="text-center mx-auto font-bold"></p>
 </div>
 <br>
 <div class="flex overflow-x-auto"><div class="m-auto">
-    <div id="Output_table" class="overflow-x-auto mt-2 bg-nord-1 rounded-md p-3 pt-1.5 w-auto"></div>
+    <div id="Output_table" class="overflow-x-auto mt-2 dark:bg-nord-1 rounded-md p-3 pt-1.5 w-auto"></div>
 </div></div>
 
 
 <!-- Settings Table -->
 <br />
 <div class="flex flex-col items-center justify-center pt-4 ">
-    <table id="settings" class="mt-2 bg-white dark:bg-nord-1 rounded-md p-3 pt-1.5 w-4/5"><caption class="">Verb</caption></table>
+    <table id="settings" class="mt-2 bg-white dark:bg-nord-1 rounded-md p-3 pt-1.5 w-4/5"><caption class="font-bold">Verb</caption></table>
 </div>
 </body>
 
